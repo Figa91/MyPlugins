@@ -1,0 +1,14 @@
+"Phrases"
+{
+	"suicide"
+	{
+		"#format"	"{1:s}"
+		"en"		"{1} could't resist violence and suicide."
+		"ru"		"{1} не выдержал насилия и самоубился."
+	}
+	"penalty"
+	{
+		"en"		"Penalty for suicide when revival will have 50 xp buffer health."
+		"ru"		"Штраф за самоубийство, при оживлении будете иметь 50 хп временного здоровья."
+	}
+}
