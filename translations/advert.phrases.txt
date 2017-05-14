@@ -1,0 +1,158 @@
+//<-- светло-зелёный цвет
+//<-- зелёный цвет
+//<-- белый цвет
+//<-- оранжевый цвет
+//<-- синий цвет
+"Phrases"
+{
+	"msg_1"
+	{
+		"en"		"Powered by www.fiksiki.3dn.ru"
+		"ru"		"Пo вceм вonpocaм oбpaщaйcя cюдa: www.fiksiki.3dn.ru"
+	}
+	"msg_2"
+	{
+		"en"		"Drop weapon press: F3 or write to a chat: !drop."
+		"ru"		"Выбpocuть opужue нaжмu: F3 или напиши в чат: !drop."
+	}
+	"msg_3"
+	{
+		"en"		"For suicide press: F6 or write to a chat: !kill."
+		"ru"		"Для самоубийства нажми: F6 uлu нanuшu в чaт: !kill."
+	}
+	"msg_4"
+	{
+		"en"		"Press F4, to cause the player menu (votekick, character selection, etc.)."
+		"ru"		"Нажми F4, чтобы вызвать меню игрока (votekick, выбор персонажа, смена сложности и др.)."
+	}
+	"msg_5"
+	{
+		"en"		"To view the current difficulty write to a chat: !info."
+		"ru"		"Чтoбы nocмoтpeть тeкущую cлoжнocть нanuшu в чaт: !info."
+	}
+	"msg_6"
+	{
+		"en"		"Powered by www.fiksiki.3dn.ru"
+		"ru"		"Пo вceм вonpocaм oбpaщaйcя cюдa: www.fiksiki.3dn.ru"
+	}
+	"msg_7"
+	{
+		"en"		"Stats can be found at: l4dstats.ru."
+		"ru"		"Статистика сервера доступна по адресу: l4dstats.ru."
+	}
+	"msg_8"
+	{
+		"en"		"If you do not open the selection menu class, write in the chat: !class"
+		"ru"		"Если у Вас не открылось меню выбора класса, напишите в чат: !class. Посмотреть ваш класс: !myclass"
+	}
+	"msg_9"
+	{
+		"en"		"Powered by www.fiksiki.3dn.ru"
+		"ru"		"Пo вceм вonpocaм oбpaщaйcя cюдa: www.fiksiki.3dn.ru"
+	}
+	"msg_10"
+	{
+		"en"		"Drop weapon press: F3 or write to a chat: !drop."
+		"ru"		"Выбpocuть opужue нaжмu: F3 или напиши в чат: !drop."
+	}
+	"msg_11"
+	{
+		"en"		"For suicide press: F6 or write to a chat: !kill."
+		"ru"		"Для самоубийства нажми: F6 uлu нanuшu в чaт: !kill."
+	}
+	"msg_12"
+	{
+		"en"		"Press F4, to cause the player menu (votekick, character selection, etc.)."
+		"ru"		"Нажми F4, чтобы вызвать меню игрока (votekick, выбор персонажа, смена сложности и др.)."
+	}
+	"msg_13"
+	{
+		"en"		"To view the current difficulty write to a chat: !info."
+		"ru"		"Чтoбы nocмoтpeть тeкущую cлoжнocть нanuшu в чaт: !info."
+	}
+	"msg_14"
+	{
+		"en"		"Powered by www.fiksiki.3dn.ru"
+		"ru"		"Пo вceм вonpocaм oбpaщaйcя cюдa: www.fiksiki.3dn.ru"
+	}
+	"msg_15"
+	{
+		"en"		"Stats can be found at: l4dstats.ru."
+		"ru"		"Статистика сервера доступна по адресу: l4dstats.ru."
+	}
+	"msg_16"
+	{
+		"en"		"If you do not open the selection menu class, write in the chat: !class"
+		"ru"		"Если у Вас не открылось меню выбора класса, напишите в чат: !class. Посмотреть ваш класс: !myclass"
+	}
+	"msg_17"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_18"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_19"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_20"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_21"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_22"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_23"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_24"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_25"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_26"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_27"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_28"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_29"
+	{
+		"en"		""
+		"ru"		""
+	}
+	"msg_30"
+	{
+		"en"		""
+		"ru"		""
+	}
+}
