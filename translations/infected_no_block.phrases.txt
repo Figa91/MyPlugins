@@ -1,0 +1,20 @@
+"Phrases"
+{
+	"suicide"
+	{
+		"#format"	"{1:s}"
+		"en"		"Player {1} could't resist violence and suicide."
+		"ru"		"Игрок {1} не выдержал насилия и самоубился."
+	}
+	"restartmap"
+	{
+		"#format"	"{1:d}"
+		"en"		"Map resetting in {1} seconds."
+		"ru"		"Карта перезапустится через {1} секунд."
+	}
+	"restartround"
+	{
+		"en"		"Round restarted"
+		"ru"		"Раунд перезапущен."
+	}
+}
