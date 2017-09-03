@@ -22,7 +22,7 @@ public Plugin:myinfo =
     name = "[L4D] Stop Mobs Rush",
     author = "Figa",
     description = "Stops the rush of zombies and SI when a spawn tank.",
-    version = "1.1",
+    version = "1.2",
     url = "http://fiksiki.3dn.ru"
 }
 
@@ -61,27 +61,27 @@ public OnPluginStart()
 }
 public ConVarChange(Handle:convar, const String:oldValue[], const String:newValue[])
 {
-	if(GetConVarInt(stop_mobsrush_enable) == 1)
+	if(GetConVarBool(stop_mobsrush_enable))
 	{
 		if (TankSpawnCount > 0)
 		{
-			if(GetConVarInt(stop_mobs) == 1)
+			if(GetConVarBool(stop_mobs))
 			{
 				ServerCommand("director_stop");
 				ServerCommand("director_no_mobs 1");
 				ServerCommand("director_no_specials 0");
 			}
-			else if (GetConVarInt(stop_mobs) == 0)
+			else
 			{
 				ServerCommand("director_start");
 				ServerCommand("director_no_specials 1");
 			}
-			if(GetConVarInt(stop_specials) == 1)
+			if(GetConVarBool(stop_specials))
 			{
 				ServerCommand("director_no_specials 1");
 				if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 0);
 			}
-			else if(GetConVarInt(stop_specials) == 0)
+			else
 			{
 				ServerCommand("director_no_specials 0");
 				if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 1);
@@ -93,7 +93,7 @@ public ConVarChange(Handle:convar, const String:oldValue[], const String:newValu
 			if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 1);
 		}
 	}
-	else if(GetConVarInt(stop_mobsrush_enable) == 0)
+	else
 	{
 		ServerCommand("director_start");
 		if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 1);
@@ -106,14 +106,14 @@ public tank_spawn(Handle:event, const String:name[], bool:Broadcast)
 	tank_spawn_count[client] = false;
 	if (TankSpawnCount > 0)
 	{
-		if(GetConVarInt(stop_mobsrush_enable) == 0)return;
-		if(GetConVarInt(stop_mobs) == 1)
+		if(!GetConVarBool(stop_mobsrush_enable))return;
+		if(GetConVarBool(stop_mobs))
 		{
 			ServerCommand("director_stop");
 			ServerCommand("director_no_mobs 1");
 			ServerCommand("director_no_specials 0");
 		}
-		if(GetConVarInt(stop_specials) == 1)
+		if(GetConVarBool(stop_specials))
 		{
 			ServerCommand("director_no_specials 1");
 			if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 0);
@@ -123,7 +123,7 @@ public tank_spawn(Handle:event, const String:name[], bool:Broadcast)
 public round_start(Handle:event, const String:name[], bool:Broadcast)
 {
 	TankSpawnCount = 0;
-	if(GetConVarInt(stop_mobsrush_enable) == 0)return;
+	if(!GetConVarBool(stop_mobsrush_enable))return;
 	ServerCommand("director_start");
 	if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 1);
 }
@@ -145,7 +145,7 @@ public tank_killed(Handle:event, const String:name[], bool:Broadcast)
 	tank_spawn_count[client] = true;
 	if (TankSpawnCount < 1)
 	{
-		if(GetConVarInt(stop_mobsrush_enable) == 0)return;
+		if(!GetConVarBool(stop_mobsrush_enable))return;
 		ServerCommand("director_start");
 		if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 1);
 	}
@@ -154,12 +154,12 @@ public OnClientDisconnect(client)
 {
 	new class = GetEntProp(client, Prop_Send, "m_zombieClass");
 	if (class != 5) return;
-	else if (class == 5 && tank_spawn_count[client] == false)
+	else if (tank_spawn_count[client] == false)
 	{
 		TankSpawnCount--;
 		if (TankSpawnCount < 1)
 		{
-			if(GetConVarInt(stop_mobsrush_enable) == 0)return;
+			if(!GetConVarBool(stop_mobsrush_enable))return;
 			ServerCommand("director_start");
 			if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 1);
 		}
@@ -167,8 +167,7 @@ public OnClientDisconnect(client)
 }
 public PanicEvent(Handle:event, const String:name[], bool:Broadcast)
 {
-	if(GetConVarInt(stop_mobsrush_enable) == 0)return;
-	if(GetConVarInt(stop_panic_event) == 0)return;
+	if(!GetConVarBool(stop_mobsrush_enable) || !GetConVarBool(stop_panic_event))return;
 	if (TankSpawnCount > 0)
 	{
 		ServerCommand("director_start");
