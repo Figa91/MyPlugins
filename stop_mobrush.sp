@@ -22,7 +22,7 @@ public Plugin:myinfo =
     name = "[L4D] Stop Mobs Rush",
     author = "Figa",
     description = "Stops the rush of zombies and SI when a spawn tank.",
-    version = "1.2",
+    version = "1.3",
     url = "http://fiksiki.3dn.ru"
 }
 
@@ -32,9 +32,9 @@ public OnPluginStart()
 	
 	HookEvent("tank_spawn", tank_spawn, EventHookMode_Post);
 	HookEvent("tank_killed", tank_killed, EventHookMode_Post);
-	HookEvent("round_start", round_start, EventHookMode_Post);
-	HookEvent("round_end", round_end);
-	HookEvent("create_panic_event", PanicEvent, EventHookMode_Post);
+	HookEvent("round_freeze_end", round_freeze_end, EventHookMode_PostNoCopy);
+	HookEvent("mission_lost", mission_lost, EventHookMode_PostNoCopy);
+	HookEvent("create_panic_event", PanicEvent, EventHookMode_PostNoCopy);
 	
 	stop_mobsrush_enable = CreateConVar("stop_mobsrush_enable", "1", "  0:disable plugin, 1:enable plugin");
 	stop_mobs = CreateConVar("stop_mobs", "1", "  0:standart mobs rush, 1:stop mobs rush if spawn tank");
@@ -103,7 +103,7 @@ public tank_spawn(Handle:event, const String:name[], bool:Broadcast)
 {
 	TankSpawnCount++;
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
-	tank_spawn_count[client] = false;
+	tank_spawn_count[client] = true;
 	if (TankSpawnCount > 0)
 	{
 		if(!GetConVarBool(stop_mobsrush_enable))return;
@@ -120,14 +120,14 @@ public tank_spawn(Handle:event, const String:name[], bool:Broadcast)
 		}
 	}
 }
-public round_start(Handle:event, const String:name[], bool:Broadcast)
+public round_freeze_end(Handle:event, const String:name[], bool:Broadcast)
 {
 	TankSpawnCount = 0;
 	if(!GetConVarBool(stop_mobsrush_enable))return;
 	ServerCommand("director_start");
 	if (stop_ais_enabled != INVALID_HANDLE) SetConVarInt(FindConVar("l4d_ais_enabled"), 1);
 }
-public round_end(Handle:event, const String:name[], bool:Broadcast)
+public mission_lost(Handle:event, const String:name[], bool:Broadcast)
 {
 	for (new  i = 1; i <= MaxClients; i++) 
 	{
@@ -142,7 +142,7 @@ public tank_killed(Handle:event, const String:name[], bool:Broadcast)
 {
 	TankSpawnCount--;
 	new client = GetClientOfUserId(GetEventInt(event, "userid"));
-	tank_spawn_count[client] = true;
+	tank_spawn_count[client] = false;
 	if (TankSpawnCount < 1)
 	{
 		if(!GetConVarBool(stop_mobsrush_enable))return;
@@ -152,11 +152,10 @@ public tank_killed(Handle:event, const String:name[], bool:Broadcast)
 }
 public OnClientDisconnect(client)
 {
-	new class = GetEntProp(client, Prop_Send, "m_zombieClass");
-	if (class != 5) return;
-	else if (tank_spawn_count[client] == false)
+	if (tank_spawn_count[client])
 	{
 		TankSpawnCount--;
+		tank_spawn_count[client] = false;
 		if (TankSpawnCount < 1)
 		{
 			if(!GetConVarBool(stop_mobsrush_enable))return;
